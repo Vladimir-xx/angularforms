@@ -1,0 +1,57 @@
+
+<div class="container">
+  <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Angular Forms</h1>
+
+    <div class="form-control">
+      <label>Логин</label>
+      <input type="text" placeholder="Логин" formControlName="login">
+      <div class="validation" *ngIf="form.get('login').invalid && form.get('login').touched">
+        <small *ngIf="form.get('login').errors.required">
+          поле Логин не может быть пустым
+        </small>
+        <small *ngIf="form.get('login').errors.login">
+          Введите коректный Логин
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label>Email</label>
+      <input type="text" placeholder="Email" formControlName="email">
+      <div class="validation" *ngIf="form.get('email').invalid && form.get('email').touched">
+        <small *ngIf="form.get('email').errors.required">
+          поле email не может быть пустым
+        </small>
+        <small *ngIf="form.get('email').errors.email">
+          Введите коректный email
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label>Пароль</label>
+      <input type="password" placeholder="Пароль" formControlName="password">
+      <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
+        <small *ngIf="form.get('password').errors.required">
+          поле пароля не может быть пустым
+        </small>
+        <small *ngIf="form.get('password').errors.minlength">
+          длинна должна быть не менее {{form.get('password').errors.minlength.requiredLength}}
+
+        </small>
+        <small *ngIf="form.get('password').errors.minlength">
+          вы ввели  {{form.get('password').errors.minlength.actualLength}} символов
+
+        </small>
+      </div>
+    </div>
+
+
+
+    <button class="btn" type="submit" [disabled]="form.invalid" [routerLink]="['home']" routerLinkActive="active" >Отправить</button>
+  </form>
+</div>
+
+
+
